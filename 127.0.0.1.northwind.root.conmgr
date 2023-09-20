@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="127.0.0.1.northwind.root"
+  DTS:DTSID="{37B8785E-C57A-4704-94FE-CE213E08FD80}"
+  DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=8.0.32.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::_127001NorthwindRoot_ConnectionString]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="server=127.0.0.1;user id=root;database=northwind;">
+      <DTS:Password
+        DTS:Name="password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAATYxiqM5pNUWxPTTJcWZpzQAAAAACAAAAAAAQZgAAAAEAACAAAAAKiZdR6BHX9RcUDpt/IcKVK7w/QRrdzevYFBQZ/Uv2FgAAAAAOgAAAAAIAACAAAAD/9fLog3aBeGaSe8hKA5QzN6TfYed98KUcz3VKfJPvSIAAAABoH0Bu81ZF+CtmUorkwnDderVSzGp3UsiaqehGMEThtxCkGqOpoY+X0yg1CVQ7FTL7/S2uJ+/Ykxl6xpqGfReQWUd/E4I5MYHHBrRXMvz8RU0ZLwqtOFCKxuhfqSUnvsD6tTmsgV7yU62OpP/OQGhtm+ywfL3tqz/Chzk60LdC10AAAABI9FLEeuk31D99qOOe6oJ43k3Yj3U432NoDxa6AahZVbLMgsBdlqjGmKX14dJr57tQ4BXfCbB77PGvSQbakzlb</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
