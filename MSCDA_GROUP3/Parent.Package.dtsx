@@ -11,15 +11,15 @@
   DTS:LocaleID="12297"
   DTS:ObjectName="Parent Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{BF7A62CD-F21B-4F3B-BD9D-2FB9D663D7D0}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{96059F89-01F0-460D-B2A0-A54F994B5829}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{721731F6-06FF-483D-9CF2-8622958291A0}"
-      DTS:IncludeInDebugDump="2345"
+      DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ExecCount">
       <DTS:VariableValue
@@ -92,7 +92,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}"
-          SQLTask:SqlStatementSource="declare @cnt int&#xA;IF  not EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[config_tbl]') AND type in (N'U'))&#xA;create table config_tbl(Id int identity, PackageName nvarchar(100) NOT NULL, Dated date, ExecutionCount int)&#xA;  set @cnt = (select sum(ExecutionCount) from config_tbl where PackageName = 'Parent.Package.dtsx' and Dated = cast(GETDATE() as date))&#xA;  set @cnt = ISNULL(@cnt, 0)&#xA;  select @cnt"
+          SQLTask:SqlStatementSource=" declare @cnt int&#xA;  set @cnt = (select sum(ExecutionCount) from config_tbl where PackageName = 'Parent.Package.dtsx' and Dated = cast(GETDATE() as date))&#xA;  set @cnt = ISNULL(@cnt, 0)&#xA;  select @cnt"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -142,10 +142,6 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="160,42"
-          Id="Package\Add Run Record"
-          TopLeft="6,279" />
-        <NodeLayout
           Size="158,42"
           Id="Package\Exec_Extracting"
           TopLeft="48,94" />
@@ -153,10 +149,6 @@
           Size="147,42"
           Id="Package\Exec_Staging"
           TopLeft="290,282" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Get Exec Count"
-          TopLeft="11,24" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="127,136">
@@ -191,6 +183,10 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Add Run Record"
+          TopLeft="6,279" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="290,301.5">
@@ -213,6 +209,10 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Get Exec Count"
+          TopLeft="11,24" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="89,66">

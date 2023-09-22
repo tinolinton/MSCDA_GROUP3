@@ -11,82 +11,20 @@
   DTS:LocaleID="12297"
   DTS:ObjectName="Child Extracting"
   DTS:PackageType="5"
-  DTS:VersionBuild="147"
-  DTS:VersionGUID="{C7CAD94E-954A-4509-89D4-21FDD75C4EC3}">
+  DTS:VersionBuild="118"
+  DTS:VersionGUID="{D136839F-65E1-4BC0-9C5E-333D115D5395}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4E71EAC2-5306-45E8-B0D4-5A4CC5E5B02C}"
+      DTS:DTSID="{6C18F2A1-4B84-420C-993C-F97F0363FACD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="varCategories">
       <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{4C6C7960-BF7C-4063-996A-C1F1F6F6A3D2}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varCustomers">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{C7B714A8-0453-4258-A437-C1612BC35B6F}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varOrderDetails">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{B06B48D2-22AC-46A4-9D42-B6ED4084C78E}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varOrders">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{09E8D8C2-3389-414C-8B0C-EB2D96AF66B1}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varProducts">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{1197CC76-E877-46FE-AC6A-7D417726F88F}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varShippers">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{0D5A2A4F-6216-443D-A6BC-F3006CC34512}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varSupplierID">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{37896059-D741-4FE0-97A9-EB84CF9F9311}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="VvarEmployees">
-      <DTS:VariableValue
-        DTS:DataType="8">0</DTS:VariableValue>
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -120,11 +58,6 @@
               DTS:ObjectName="DF_Categories"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Categories].[SqlCommand]">"SELECT `categories`.`CategoryID`,
-    `categories`.`CategoryName`,
-    `categories`.`Description`
-FROM `northwind`.`categories` where CategoryID&gt;=" + @[User::varCategories]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -408,6 +341,142 @@ where [refTable].[CategoryID] = ?</property>
                       </outputs>
                     </component>
                     <component
+                      refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command"
+                      componentClassID="Microsoft.OLEDBCommand"
+                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                      name="OLE DB Command"
+                      usesDispositions="true"
+                      version="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [extracting].[categories]
+   SET [CategoryName] = ?,
+      [Description] = ?
+ WHERE CategoryID = ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Connections[OleDbConnection]"
+                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input]"
+                          errorOrTruncationOperation="Command Execution"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Command Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].Columns[CategoryID]"
+                              cachedDataType="i4"
+                              cachedName="CategoryID"
+                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[CategoryID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].Columns[CategoryName]"
+                              cachedDataType="wstr"
+                              cachedLength="25"
+                              cachedName="CategoryName"
+                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[CategoryName]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].Columns[Description]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Description"
+                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[Description]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              dataType="wstr"
+                              length="25"
+                              name="Param_0">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              dataType="wstr"
+                              length="255"
+                              name="Param_1">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              dataType="i4"
+                              name="Param_2">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">17</property>
+                              </properties>
+                            </externalMetadataColumn>
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Output]"
+                          exclusionGroup="1"
+                          name="OLE DB Command Output"
+                          synchronousInputId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Command Error Output"
+                          synchronousInputId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
                       refId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories"
                       componentClassID="Microsoft.ManagedComponentHost"
                       contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -424,7 +493,8 @@ where [refTable].[CategoryID] = ?</property>
                           UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT `categories`.`CategoryID`,
     `categories`.`CategoryName`,
     `categories`.`Description`
-FROM `northwind`.`categories` where CategoryID&gt;=0</property>
+FROM `northwind`.`categories`
+where CategoryID</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -548,142 +618,6 @@ FROM `northwind`.`categories` where CategoryID&gt;=0</property>
                         </output>
                       </outputs>
                     </component>
-                    <component
-                      refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories"
-                      componentClassID="Microsoft.OLEDBCommand"
-                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-                      name="UPDATE_Categories"
-                      usesDispositions="true"
-                      version="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="The SQL command to be executed."
-                          expressionType="Notify"
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [extracting].[categories]
-   SET [CategoryName] = ?,
-      [Description] = ?
- WHERE CategoryID = ?</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the column code page to use when code page information is unavailable from the data source."
-                          name="DefaultCodePage">1252</property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Connections[OleDbConnection]"
-                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
-                          description="The OLE DB runtime connection used to access the database."
-                          name="OleDbConnection" />
-                      </connections>
-                      <inputs>
-                        <input
-                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input]"
-                          errorOrTruncationOperation="Command Execution"
-                          errorRowDisposition="FailComponent"
-                          hasSideEffects="true"
-                          name="OLE DB Command Input">
-                          <inputColumns>
-                            <inputColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].Columns[CategoryID]"
-                              cachedDataType="i4"
-                              cachedName="CategoryID"
-                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[CategoryID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].Columns[CategoryName]"
-                              cachedDataType="wstr"
-                              cachedLength="25"
-                              cachedName="CategoryName"
-                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[CategoryName]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].Columns[Description]"
-                              cachedDataType="wstr"
-                              cachedLength="255"
-                              cachedName="Description"
-                              externalMetadataColumnId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output].Columns[Description]" />
-                          </inputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              dataType="wstr"
-                              length="25"
-                              name="Param_0">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              dataType="wstr"
-                              length="255"
-                              name="Param_1">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              dataType="i4"
-                              name="Param_2">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">17</property>
-                              </properties>
-                            </externalMetadataColumn>
-                          </externalMetadataColumns>
-                        </input>
-                      </inputs>
-                      <outputs>
-                        <output
-                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Output]"
-                          exclusionGroup="1"
-                          name="OLE DB Command Output"
-                          synchronousInputId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input]">
-                          <externalMetadataColumns />
-                        </output>
-                        <output
-                          refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Error Output]"
-                          exclusionGroup="1"
-                          isErrorOut="true"
-                          name="OLE DB Command Error Output"
-                          synchronousInputId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input]">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
                   </components>
                   <paths>
                     <path
@@ -693,7 +627,7 @@ FROM `northwind`.`categories` where CategoryID&gt;=0</property>
                       startId="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories.Outputs[ADO NET Source Output]" />
                     <path
                       refId="Package\Sequence Container\Categories Seq Container\DF_Categories.Paths[Lookup Match Output]"
-                      endId="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories.Inputs[OLE DB Command Input]"
+                      endId="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command.Inputs[OLE DB Command Input]"
                       name="Lookup Match Output"
                       startId="Package\Sequence Container\Categories Seq Container\DF_Categories\Lookup.Outputs[Lookup Match Output]" />
                     <path
@@ -727,15 +661,6 @@ FROM `northwind`.`categories` where CategoryID&gt;=0</property>
               DTS:ObjectName="DF_Customers"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Customers].[SqlCommand]">"SELECT `customers`.`CustomerID`,
-    `customers`.`CustomerName`,
-    `customers`.`ContactName`,
-    `customers`.`Address`,
-    `customers`.`City`,
-    `customers`.`PostalCode`,
-    `customers`.`Country`
-FROM `northwind`.`customers` where CustomerID&gt;=" + @[User::varCustomers]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -1087,7 +1012,7 @@ where [refTable].[CustomerID] = ?</property>
     `customers`.`City`,
     `customers`.`PostalCode`,
     `customers`.`Country`
-FROM `northwind`.`customers` where CustomerID&gt;=0</property>
+FROM `northwind`.`customers`</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -1556,14 +1481,6 @@ WHERE [CustomerID] = ?;
               DTS:ObjectName="DF_Employees"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Employees].[SqlCommand]">"SELECT `employees`.`EmployeeID`,
-    `employees`.`LastName`,
-    `employees`.`FirstName`,
-    `employees`.`BirthDate`,
-    `employees`.`Photo`,
-    `employees`.`Notes`
-FROM `northwind`.`employees` where EmployeeID&gt;=" + @[User::VvarEmployees]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -1881,6 +1798,200 @@ where [refTable].[EmployeeID] = ?</property>
                       </outputs>
                     </component>
                     <component
+                      refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command"
+                      componentClassID="Microsoft.OLEDBCommand"
+                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                      name="OLE DB Command"
+                      usesDispositions="true"
+                      version="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"> UPDATE [extracting].[employees]
+   SET [LastName] = ?,
+      [FirstName] = ?,
+      [BirthDate] = ?,
+      [Photo] = ?,
+      [Notes] = ?
+ WHERE [EmployeeID] = ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Connections[OleDbConnection]"
+                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input]"
+                          errorOrTruncationOperation="Command Execution"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Command Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[EmployeeID]"
+                              cachedDataType="i4"
+                              cachedName="EmployeeID"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[EmployeeID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[LastName]"
+                              cachedDataType="wstr"
+                              cachedLength="15"
+                              cachedName="LastName"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[LastName]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[FirstName]"
+                              cachedDataType="wstr"
+                              cachedLength="15"
+                              cachedName="FirstName"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[BirthDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="BirthDate"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[Photo]"
+                              cachedDataType="wstr"
+                              cachedLength="25"
+                              cachedName="Photo"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[Photo]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].Columns[Notes]"
+                              cachedDataType="wstr"
+                              cachedLength="1024"
+                              cachedName="Notes"
+                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[Notes]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              dataType="wstr"
+                              length="15"
+                              name="Param_0">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              dataType="wstr"
+                              length="15"
+                              name="Param_1">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              dataType="dbTimeStamp"
+                              name="Param_2">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                              dataType="wstr"
+                              length="25"
+                              name="Param_3">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                              dataType="wstr"
+                              length="1024"
+                              name="Param_4">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                              dataType="i4"
+                              name="Param_5">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">17</property>
+                              </properties>
+                            </externalMetadataColumn>
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Output]"
+                          exclusionGroup="1"
+                          name="OLE DB Command Output"
+                          synchronousInputId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Command Error Output"
+                          synchronousInputId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
                       refId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees"
                       componentClassID="Microsoft.ManagedComponentHost"
                       contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1900,7 +2011,7 @@ where [refTable].[EmployeeID] = ?</property>
     `employees`.`BirthDate`,
     `employees`.`Photo`,
     `employees`.`Notes`
-FROM `northwind`.`employees` where EmployeeID&gt;=0</property>
+FROM `northwind`.`employees`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -2084,200 +2195,6 @@ FROM `northwind`.`employees` where EmployeeID&gt;=0</property>
                         </output>
                       </outputs>
                     </component>
-                    <component
-                      refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees"
-                      componentClassID="Microsoft.OLEDBCommand"
-                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-                      name="UPDATE_Employees"
-                      usesDispositions="true"
-                      version="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="The SQL command to be executed."
-                          expressionType="Notify"
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"> UPDATE [extracting].[employees]
-   SET [LastName] = ?,
-      [FirstName] = ?,
-      [BirthDate] = ?,
-      [Photo] = ?,
-      [Notes] = ?
- WHERE [EmployeeID] = ?</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the column code page to use when code page information is unavailable from the data source."
-                          name="DefaultCodePage">1252</property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Connections[OleDbConnection]"
-                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
-                          description="The OLE DB runtime connection used to access the database."
-                          name="OleDbConnection" />
-                      </connections>
-                      <inputs>
-                        <input
-                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input]"
-                          errorOrTruncationOperation="Command Execution"
-                          errorRowDisposition="FailComponent"
-                          hasSideEffects="true"
-                          name="OLE DB Command Input">
-                          <inputColumns>
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[EmployeeID]"
-                              cachedDataType="i4"
-                              cachedName="EmployeeID"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[EmployeeID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[LastName]"
-                              cachedDataType="wstr"
-                              cachedLength="15"
-                              cachedName="LastName"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[LastName]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[FirstName]"
-                              cachedDataType="wstr"
-                              cachedLength="15"
-                              cachedName="FirstName"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[FirstName]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[BirthDate]"
-                              cachedDataType="dbTimeStamp"
-                              cachedName="BirthDate"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[BirthDate]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[Photo]"
-                              cachedDataType="wstr"
-                              cachedLength="25"
-                              cachedName="Photo"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[Photo]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].Columns[Notes]"
-                              cachedDataType="wstr"
-                              cachedLength="1024"
-                              cachedName="Notes"
-                              externalMetadataColumnId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output].Columns[Notes]" />
-                          </inputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              dataType="wstr"
-                              length="15"
-                              name="Param_0">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              dataType="wstr"
-                              length="15"
-                              name="Param_1">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              dataType="dbTimeStamp"
-                              name="Param_2">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                              dataType="wstr"
-                              length="25"
-                              name="Param_3">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                              dataType="wstr"
-                              length="1024"
-                              name="Param_4">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                              dataType="i4"
-                              name="Param_5">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">17</property>
-                              </properties>
-                            </externalMetadataColumn>
-                          </externalMetadataColumns>
-                        </input>
-                      </inputs>
-                      <outputs>
-                        <output
-                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Output]"
-                          exclusionGroup="1"
-                          name="OLE DB Command Output"
-                          synchronousInputId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input]">
-                          <externalMetadataColumns />
-                        </output>
-                        <output
-                          refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Error Output]"
-                          exclusionGroup="1"
-                          isErrorOut="true"
-                          name="OLE DB Command Error Output"
-                          synchronousInputId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input]">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
                   </components>
                   <paths>
                     <path
@@ -2287,7 +2204,7 @@ FROM `northwind`.`employees` where EmployeeID&gt;=0</property>
                       startId="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees.Outputs[ADO NET Source Output]" />
                     <path
                       refId="Package\Sequence Container\Employees Seq Container\DF_Employees.Paths[Lookup Match Output]"
-                      endId="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees.Inputs[OLE DB Command Input]"
+                      endId="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command.Inputs[OLE DB Command Input]"
                       name="Lookup Match Output"
                       startId="Package\Sequence Container\Employees Seq Container\DF_Employees\Lookup.Outputs[Lookup Match Output]" />
                     <path
@@ -2321,13 +2238,6 @@ FROM `northwind`.`employees` where EmployeeID&gt;=0</property>
               DTS:ObjectName="DF_OrderDetails"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_OrderDetails].[SqlCommand]">"SELECT `orderdetails`.`OrderDetailID`,
-    `orderdetails`.`OrderID`,
-    `orderdetails`.`ProductID`,
-    `orderdetails`.`Quantity`
-FROM `northwind`.`orderdetails`
-where OrderDetailID&gt;=" + @[User::varOrderDetails]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -2650,8 +2560,7 @@ where [refTable].[OrderDetailID] = ? and [refTable].[OrderID] = ?</property>
     `orderdetails`.`OrderID`,
     `orderdetails`.`ProductID`,
     `orderdetails`.`Quantity`
-FROM `northwind`.`orderdetails`
-where OrderDetailID&gt;=0</property>
+FROM `northwind`.`orderdetails`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -2982,13 +2891,6 @@ WHERE [OrderDetailID] = ?;
               DTS:ObjectName="DF_Orders"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Orders].[SqlCommand]">"SELECT `orders`.`OrderID`,
-    `orders`.`CustomerID`,
-    `orders`.`EmployeeID`,
-    `orders`.`OrderDate`,
-    `orders`.`ShipperID`
-FROM `northwind`.`orders` where OrderID&gt;=" + @[User::varOrders]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -3322,7 +3224,7 @@ where [refTable].[OrderID] = ? and [refTable].[CustomerID] = ?</property>
     `orders`.`EmployeeID`,
     `orders`.`OrderDate`,
     `orders`.`ShipperID`
-FROM `northwind`.`orders` where OrderID&gt;=0</property>
+FROM `northwind`.`orders`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -3689,187 +3591,10 @@ WHERE [OrderID] = ?;
               DTS:ObjectName="DF_Products"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Products].[SqlCommand]">"SELECT `products`.`ProductID`,
-    `products`.`ProductName`,
-    `products`.`SupplierID`,
-    `products`.`CategoryID`,
-    `products`.`Unit`,
-    `products`.`Price`
-FROM `northwind`.`products` where ProductID and SupplierID &gt;=" + @[User::varProducts]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
                   <components>
-                    <component
-                      refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products"
-                      componentClassID="Microsoft.OLEDBDestination"
-                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-                      description="OLE DB Destination"
-                      name="DST_Products"
-                      usesDispositions="true"
-                      version="4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the name of the database object used to open a rowset."
-                          name="OpenRowset">[extracting].[products]</property>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the variable that contains the name of the database object used to open a rowset."
-                          name="OpenRowsetVariable"></property>
-                        <property
-                          dataType="System.String"
-                          description="The SQL command to be executed."
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the column code page to use when code page information is unavailable from the data source."
-                          name="DefaultCodePage">1252</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Forces the use of the DefaultCodePage property value when describing character data."
-                          name="AlwaysUseDefaultCodePage">false</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the mode used to access the database."
-                          name="AccessMode"
-                          typeConverter="AccessMode">3</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                          name="FastLoadKeepIdentity">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                          name="FastLoadKeepNulls">false</property>
-                        <property
-                          dataType="System.String"
-                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                          name="FastLoadMaxInsertCommitSize">2147483647</property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Connections[OleDbConnection]"
-                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
-                          description="The OLE DB runtime connection used to access the database."
-                          name="OleDbConnection" />
-                      </connections>
-                      <inputs>
-                        <input
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input]"
-                          errorOrTruncationOperation="Insert"
-                          errorRowDisposition="FailComponent"
-                          hasSideEffects="true"
-                          name="OLE DB Destination Input">
-                          <inputColumns>
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[ProductID]"
-                              cachedDataType="i4"
-                              cachedName="ProductID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[ProductName]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="ProductName"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductName]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[SupplierID]"
-                              cachedDataType="i4"
-                              cachedName="SupplierID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[SupplierID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[CategoryID]"
-                              cachedDataType="i4"
-                              cachedName="CategoryID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[CategoryID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[Unit]"
-                              cachedDataType="wstr"
-                              cachedLength="25"
-                              cachedName="Unit"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Unit]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].Columns[Price]"
-                              cachedDataType="numeric"
-                              cachedName="Price"
-                              cachedPrecision="10"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Price]" />
-                          </inputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
-                              dataType="i4"
-                              name="ProductID" />
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
-                              dataType="wstr"
-                              length="50"
-                              name="ProductName" />
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
-                              dataType="i4"
-                              name="SupplierID" />
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
-                              dataType="i4"
-                              name="CategoryID" />
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
-                              dataType="wstr"
-                              length="25"
-                              name="Unit" />
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
-                              dataType="numeric"
-                              name="Price"
-                              precision="10" />
-                          </externalMetadataColumns>
-                        </input>
-                      </inputs>
-                      <outputs>
-                        <output
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Outputs[OLE DB Destination Error Output]"
-                          exclusionGroup="1"
-                          isErrorOut="true"
-                          name="OLE DB Destination Error Output"
-                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input]">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
                     <component
                       refId="Package\Sequence Container\Products Seq Container\DF_Products\Lookup"
                       componentClassID="Microsoft.Lookup"
@@ -4078,6 +3803,368 @@ where [refTable].[ProductID] = ? and [refTable].[ProductName] = ? and [refTable]
                       </outputs>
                     </component>
                     <component
+                      refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command"
+                      componentClassID="Microsoft.OLEDBCommand"
+                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                      name="OLE DB Command"
+                      usesDispositions="true"
+                      version="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [staging].[products]
+SET
+[ProductName] = ?,
+[SupplierID] = ?,
+[CategoryID] = ?,
+[Unit] = ?,
+[Price] = ?
+WHERE [ProductID] = ?;</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Connections[OleDbConnection]"
+                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input]"
+                          errorOrTruncationOperation="Command Execution"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Command Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductID]"
+                              cachedDataType="i4"
+                              cachedName="ProductID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductName]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="ProductName"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductName]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[SupplierID]"
+                              cachedDataType="i4"
+                              cachedName="SupplierID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[SupplierID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[CategoryID]"
+                              cachedDataType="i4"
+                              cachedName="CategoryID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[CategoryID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[Unit]"
+                              cachedDataType="wstr"
+                              cachedLength="25"
+                              cachedName="Unit"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Unit]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[Price]"
+                              cachedDataType="numeric"
+                              cachedName="Price"
+                              cachedPrecision="10"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Price]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                              dataType="wstr"
+                              length="50"
+                              name="Param_0">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">17</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                              dataType="i4"
+                              name="Param_1">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                              dataType="i4"
+                              name="Param_2">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">81</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                              dataType="wstr"
+                              length="25"
+                              name="Param_3">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">81</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                              dataType="numeric"
+                              name="Param_4"
+                              precision="10">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">65</property>
+                              </properties>
+                            </externalMetadataColumn>
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                              dataType="i4"
+                              name="Param_5">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                                  name="DBParamInfoFlags">81</property>
+                              </properties>
+                            </externalMetadataColumn>
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Output]"
+                          exclusionGroup="1"
+                          name="OLE DB Command Output"
+                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Command Error Output"
+                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DB Destination"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[extracting].[products]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Connections[OleDbConnection]"
+                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                              cachedDataType="i4"
+                              cachedName="ProductID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="ProductName"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductName]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SupplierID]"
+                              cachedDataType="i4"
+                              cachedName="SupplierID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[SupplierID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                              cachedDataType="i4"
+                              cachedName="CategoryID"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[CategoryID]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Unit]"
+                              cachedDataType="wstr"
+                              cachedLength="25"
+                              cachedName="Unit"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Unit]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Price]"
+                              cachedDataType="numeric"
+                              cachedName="Price"
+                              cachedPrecision="10"
+                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Price]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                              dataType="i4"
+                              name="ProductID" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                              dataType="wstr"
+                              length="50"
+                              name="ProductName" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                              dataType="i4"
+                              name="SupplierID" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                              dataType="i4"
+                              name="CategoryID" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                              dataType="wstr"
+                              length="25"
+                              name="Unit" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                              dataType="numeric"
+                              name="Price"
+                              precision="10" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
                       refId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products"
                       componentClassID="Microsoft.ManagedComponentHost"
                       contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -4097,7 +4184,7 @@ where [refTable].[ProductID] = ? and [refTable].[ProductName] = ? and [refTable]
     `products`.`CategoryID`,
     `products`.`Unit`,
     `products`.`Price`
-FROM `northwind`.`products` where ProductID and SupplierID &gt;=0</property>
+FROM `northwind`.`products`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -4278,199 +4365,6 @@ FROM `northwind`.`products` where ProductID and SupplierID &gt;=0</property>
                         </output>
                       </outputs>
                     </component>
-                    <component
-                      refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products"
-                      componentClassID="Microsoft.OLEDBCommand"
-                      contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-                      description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-                      name="UPDATE_Products"
-                      usesDispositions="true"
-                      version="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="The SQL command to be executed."
-                          expressionType="Notify"
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [staging].[products]
-SET
-[ProductName] = ?,
-[SupplierID] = ?,
-[CategoryID] = ?,
-[Unit] = ?,
-[Price] = ?
-WHERE [ProductID] = ?;</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the column code page to use when code page information is unavailable from the data source."
-                          name="DefaultCodePage">1252</property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Connections[OleDbConnection]"
-                          connectionManagerID="{5C23AA17-1930-4AE3-93E9-0219F9BB9470}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[ANDREAKINGS_SQLEXPRESS.MSCDA_GROUP3]"
-                          description="The OLE DB runtime connection used to access the database."
-                          name="OleDbConnection" />
-                      </connections>
-                      <inputs>
-                        <input
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input]"
-                          errorOrTruncationOperation="Command Execution"
-                          errorRowDisposition="FailComponent"
-                          hasSideEffects="true"
-                          name="OLE DB Command Input">
-                          <inputColumns>
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[ProductID]"
-                              cachedDataType="i4"
-                              cachedName="ProductID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[ProductName]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="ProductName"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[ProductName]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[SupplierID]"
-                              cachedDataType="i4"
-                              cachedName="SupplierID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[SupplierID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[CategoryID]"
-                              cachedDataType="i4"
-                              cachedName="CategoryID"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[CategoryID]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[Unit]"
-                              cachedDataType="wstr"
-                              cachedLength="25"
-                              cachedName="Unit"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Unit]" />
-                            <inputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].Columns[Price]"
-                              cachedDataType="numeric"
-                              cachedName="Price"
-                              cachedPrecision="10"
-                              externalMetadataColumnId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output].Columns[Price]" />
-                          </inputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                              dataType="wstr"
-                              length="50"
-                              name="Param_0">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">17</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                              dataType="i4"
-                              name="Param_1">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                              dataType="i4"
-                              name="Param_2">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">81</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                              dataType="wstr"
-                              length="25"
-                              name="Param_3">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">81</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                              dataType="numeric"
-                              name="Param_4"
-                              precision="10">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">65</property>
-                              </properties>
-                            </externalMetadataColumn>
-                            <externalMetadataColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                              dataType="i4"
-                              name="Param_5">
-                              <properties>
-                                <property
-                                  dataType="System.Int32"
-                                  description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                                  name="DBParamInfoFlags">81</property>
-                              </properties>
-                            </externalMetadataColumn>
-                          </externalMetadataColumns>
-                        </input>
-                      </inputs>
-                      <outputs>
-                        <output
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Output]"
-                          exclusionGroup="1"
-                          name="OLE DB Command Output"
-                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input]">
-                          <externalMetadataColumns />
-                        </output>
-                        <output
-                          refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Error Output]"
-                          exclusionGroup="1"
-                          isErrorOut="true"
-                          name="OLE DB Command Error Output"
-                          synchronousInputId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input]">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
                   </components>
                   <paths>
                     <path
@@ -4480,12 +4374,12 @@ WHERE [ProductID] = ?;</property>
                       startId="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products.Outputs[ADO NET Source Output]" />
                     <path
                       refId="Package\Sequence Container\Products Seq Container\DF_Products.Paths[Lookup Match Output]"
-                      endId="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products.Inputs[OLE DB Command Input]"
+                      endId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command.Inputs[OLE DB Command Input]"
                       name="Lookup Match Output"
                       startId="Package\Sequence Container\Products Seq Container\DF_Products\Lookup.Outputs[Lookup Match Output]" />
                     <path
                       refId="Package\Sequence Container\Products Seq Container\DF_Products.Paths[Lookup No Match Output]"
-                      endId="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products.Inputs[OLE DB Destination Input]"
+                      endId="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination.Inputs[OLE DB Destination Input]"
                       name="Lookup No Match Output"
                       startId="Package\Sequence Container\Products Seq Container\DF_Products\Lookup.Outputs[Lookup No Match Output]" />
                   </paths>
@@ -4514,12 +4408,6 @@ WHERE [ProductID] = ?;</property>
               DTS:ObjectName="DF_Shippers"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Shippers].[SqlCommand]">"SELECT `shippers`.`ShipperID`,
-    `shippers`.`ShipperName`,
-    `shippers`.`Phone`
-FROM `northwind`.`shippers`
-where ShipperID&gt;= " + @[User::varSupplierID]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -4819,8 +4707,7 @@ where [refTable].[ShipperID] = ?</property>
                           UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT `shippers`.`ShipperID`,
     `shippers`.`ShipperName`,
     `shippers`.`Phone`
-FROM `northwind`.`shippers`
-where ShipperID&gt;= 0</property>
+FROM `northwind`.`shippers`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -5125,17 +5012,6 @@ WHERE [ShipperID] =?
               DTS:ObjectName="DF_Suppliers"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
-              <DTS:PropertyExpression
-                DTS:Name="[SRC_Suppliers].[SqlCommand]">"SELECT `suppliers`.`SupplierID`,
-    `suppliers`.`SupplierName`,
-    `suppliers`.`ContactName`,
-    `suppliers`.`Address`,
-    `suppliers`.`City`,
-    `suppliers`.`PostalCode`,
-    `suppliers`.`Country`,
-    `suppliers`.`Phone`
-FROM `northwind`.`suppliers`
-WHERE `SupplierID`&gt;=" + @[User::varSupplierID]</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -5394,7 +5270,7 @@ where [refTable].[SupplierID] = ?</property>
                           containsID="true"
                           dataType="System.String"
                           description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                          name="ParameterMap">#{Package\Sequence Container\Suppliers Seq Container\DF_Suppliers\67:invalid};</property>
+                          name="ParameterMap">#{Package\Sequence Container\Suppliers Seq Container\DF_Suppliers\SRC_Suppliers.Outputs[ADO NET Source Output].Columns[SupplierID]};</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -5500,8 +5376,7 @@ where [refTable].[SupplierID] = ?</property>
     `suppliers`.`PostalCode`,
     `suppliers`.`Country`,
     `suppliers`.`Phone`
-FROM `northwind`.`suppliers`
-WHERE `SupplierID`&gt;=0</property>
+FROM `northwind`.`suppliers`;</property>
                         <property
                           dataType="System.Int32"
                           description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -6084,12 +5959,12 @@ WHERE `SupplierID`&gt;=0</property>
         <NodeLayout
           Size="146,42"
           Id="Package\Sequence Container\Suppliers Seq Container\DF_Suppliers"
-          TopLeft="58.3333333333333,97.809523809524" />
+          TopLeft="50.3333333333333,85.809523809524" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="281,224"
-          Size="281,267"
+          PanelSize="253,224"
+          Size="253,267"
           Id="Package\Sequence Container\Suppliers Seq Container"
           TopLeft="326,18.2857142857143" />
         <ContainerLayout
@@ -6108,17 +5983,17 @@ WHERE `SupplierID`&gt;=0</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="162,42"
-          Id="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories"
-          TopLeft="44,39" />
+          Size="173,42"
+          Id="Package\Sequence Container\Categories Seq Container\DF_Categories\OLE DB Command"
+          TopLeft="397,279" />
         <NodeLayout
           Size="115,42"
           Id="Package\Sequence Container\Categories Seq Container\DF_Categories\Lookup"
           TopLeft="231,135" />
         <NodeLayout
-          Size="183,42"
-          Id="Package\Sequence Container\Categories Seq Container\DF_Categories\UPDATE_Categories"
-          TopLeft="397,279" />
+          Size="162,42"
+          Id="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories"
+          TopLeft="44,39" />
         <NodeLayout
           Size="160,42"
           Id="Package\Sequence Container\Categories Seq Container\DF_Categories\DST_Categories"
@@ -6165,9 +6040,9 @@ WHERE `SupplierID`&gt;=0</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="182.166666666667,102"
+              EndConnector="177.166666666667,102"
               Start="0,0"
-              End="182.166666666667,94.5">
+              End="177.166666666667,94.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -6178,20 +6053,20 @@ WHERE `SupplierID`&gt;=0</property>
                     Point2="0,41.6397941680961"
                     Point3="4,41.6397941680961" />
                   <mssgle:LineSegment
-                    End="178.166666666667,41.6397941680961" />
+                    End="173.166666666667,41.6397941680961" />
                   <mssgle:CubicBezierSegment
-                    Point1="178.166666666667,41.6397941680961"
-                    Point2="182.166666666667,41.6397941680961"
-                    Point3="182.166666666667,45.6397941680961" />
+                    Point1="173.166666666667,41.6397941680961"
+                    Point2="177.166666666667,41.6397941680961"
+                    Point3="177.166666666667,45.6397941680961" />
                   <mssgle:LineSegment
-                    End="182.166666666667,94.5" />
+                    End="177.166666666667,94.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="42.8919466145835,46.6397941680961,96.3827734375,11.609375"
+              BoundingBox="40.3919466145833,46.6397941680961,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6226,20 +6101,14 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Sequence Container\Categories Seq Container\DF_Categories\Lookup">
     <Properties>
@@ -6258,6 +6127,14 @@ WHERE `SupplierID`&gt;=0</property>
         <Value
           type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Categories Seq Container\DF_Categories\SRC_Categories">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -6310,17 +6187,17 @@ WHERE `SupplierID`&gt;=0</property>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.21269296741" />
+                    End="0,46.21269296741" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,34.21269296741"
-                    Point2="0,38.21269296741"
-                    Point3="-4,38.21269296741" />
+                    Point1="0,46.21269296741"
+                    Point2="0,50.21269296741"
+                    Point3="-4,50.21269296741" />
                   <mssgle:LineSegment
-                    End="-95.6666666666667,38.21269296741" />
+                    End="-95.6666666666667,50.21269296741" />
                   <mssgle:CubicBezierSegment
-                    Point1="-95.6666666666667,38.21269296741"
-                    Point2="-99.6666666666667,38.21269296741"
-                    Point3="-99.6666666666667,42.21269296741" />
+                    Point1="-95.6666666666667,50.21269296741"
+                    Point2="-99.6666666666667,50.21269296741"
+                    Point3="-99.6666666666667,54.21269296741" />
                   <mssgle:LineSegment
                     End="-99.6666666666667,115.5" />
                 </mssgle:SegmentCollection>
@@ -6329,7 +6206,7 @@ WHERE `SupplierID`&gt;=0</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-105.639720052083,43.21269296741,111.6127734375,11.609375"
+              BoundingBox="-105.639720052083,55.21269296741,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6346,17 +6223,17 @@ WHERE `SupplierID`&gt;=0</property>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.21269296741" />
+                    End="0,46.21269296741" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,34.21269296741"
-                    Point2="0,38.21269296741"
-                    Point3="4,38.21269296741" />
+                    Point1="0,46.21269296741"
+                    Point2="0,50.21269296741"
+                    Point3="4,50.21269296741" />
                   <mssgle:LineSegment
-                    End="148.166666666667,38.21269296741" />
+                    End="148.166666666667,50.21269296741" />
                   <mssgle:CubicBezierSegment
-                    Point1="148.166666666667,38.21269296741"
-                    Point2="152.166666666667,38.21269296741"
-                    Point3="152.166666666667,42.21269296741" />
+                    Point1="148.166666666667,50.21269296741"
+                    Point2="152.166666666667,50.21269296741"
+                    Point3="152.166666666667,54.21269296741" />
                   <mssgle:LineSegment
                     End="152.166666666667,115.5" />
                 </mssgle:SegmentCollection>
@@ -6365,13 +6242,13 @@ WHERE `SupplierID`&gt;=0</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="27.8919466145835,43.21269296741,96.3827734375,11.609375"
+              BoundingBox="27.8919466145835,55.21269296741,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container\Customers Seq Container\DF_Customers.Paths[ADO NET Source Output]"
-          TopLeft="312,78">
+          TopLeft="316,78">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6388,7 +6265,9 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6444,9 +6323,9 @@ WHERE `SupplierID`&gt;=0</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="163,42"
-          Id="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees"
-          TopLeft="250,49" />
+          Size="173,42"
+          Id="Package\Sequence Container\Employees Seq Container\DF_Employees\OLE DB Command"
+          TopLeft="460,341" />
         <NodeLayout
           Size="115,42"
           Id="Package\Sequence Container\Employees Seq Container\DF_Employees\Lookup"
@@ -6456,9 +6335,9 @@ WHERE `SupplierID`&gt;=0</property>
           Id="Package\Sequence Container\Employees Seq Container\DF_Employees\DST_Employees"
           TopLeft="114,339" />
         <NodeLayout
-          Size="184,42"
-          Id="Package\Sequence Container\Employees Seq Container\DF_Employees\UPDATE_Employees"
-          TopLeft="460,341" />
+          Size="163,42"
+          Id="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees"
+          TopLeft="250,49" />
         <EdgeLayout
           Id="Package\Sequence Container\Employees Seq Container\DF_Employees.Paths[Lookup No Match Output]"
           TopLeft="322.5,221">
@@ -6501,9 +6380,9 @@ WHERE `SupplierID`&gt;=0</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="211.666666666667,120"
+              EndConnector="206.166666666667,120"
               Start="0,0"
-              End="211.666666666667,112.5">
+              End="206.166666666667,112.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -6514,20 +6393,20 @@ WHERE `SupplierID`&gt;=0</property>
                     Point2="0,48.9879931389366"
                     Point3="4,48.9879931389366" />
                   <mssgle:LineSegment
-                    End="207.666666666667,48.9879931389366" />
+                    End="202.166666666667,48.9879931389366" />
                   <mssgle:CubicBezierSegment
-                    Point1="207.666666666667,48.9879931389366"
-                    Point2="211.666666666667,48.9879931389366"
-                    Point3="211.666666666667,52.9879931389366" />
+                    Point1="202.166666666667,48.9879931389366"
+                    Point2="206.166666666667,48.9879931389366"
+                    Point3="206.166666666667,52.9879931389366" />
                   <mssgle:LineSegment
-                    End="211.666666666667,112.5" />
+                    End="206.166666666667,112.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="57.6419466145835,53.9879931389366,96.3827734375,11.609375"
+              BoundingBox="54.8919466145835,53.9879931389366,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6562,20 +6441,14 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\Employees Seq Container\DF_Employees\SRC_Employees">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Sequence Container\OrderDetails Seq Container\DF_OrderDetails">
     <LayoutInfo>
@@ -6665,7 +6538,7 @@ WHERE `SupplierID`&gt;=0</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="20.6419466145835,33.5763293310463,96.3827734375,11.609375"
+              BoundingBox="20.6419466145833,33.5763293310463,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6688,7 +6561,9 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6850,7 +6725,9 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6906,21 +6783,21 @@ WHERE `SupplierID`&gt;=0</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\Sequence Container\Products Seq Container\DF_Products\UPDATE_Products"
-          TopLeft="418,309" />
+          Size="177,42"
+          Id="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination"
+          TopLeft="80,307" />
         <NodeLayout
           Size="152,42"
           Id="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products"
           TopLeft="236,35" />
         <NodeLayout
+          Size="173,42"
+          Id="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Command"
+          TopLeft="418,309" />
+        <NodeLayout
           Size="115,42"
           Id="Package\Sequence Container\Products Seq Container\DF_Products\Lookup"
           TopLeft="261,187" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products"
-          TopLeft="80,307" />
         <EdgeLayout
           Id="Package\Sequence Container\Products Seq Container\DF_Products.Paths[Lookup Match Output]"
           TopLeft="336.333333333333,229">
@@ -6976,48 +6853,63 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container\Products Seq Container\DF_Products.Paths[Lookup No Match Output]"
-          TopLeft="300.666666666667,229">
+          TopLeft="318.5,229">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-145.666666666667,78"
+              EndConnector="-150,78"
               Start="0,0"
-              End="-145.666666666667,70.5">
+              End="-150,70.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.8421955403088" />
+                    End="0,35" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27.8421955403088"
-                    Point2="0,31.8421955403088"
-                    Point3="-4,31.8421955403088" />
+                    Point1="0,35"
+                    Point2="0,39"
+                    Point3="-4,39" />
                   <mssgle:LineSegment
-                    End="-141.666666666667,31.8421955403088" />
+                    End="-146,39" />
                   <mssgle:CubicBezierSegment
-                    Point1="-141.666666666667,31.8421955403088"
-                    Point2="-145.666666666667,31.8421955403088"
-                    Point3="-145.666666666667,35.8421955403088" />
+                    Point1="-146,39"
+                    Point2="-150,39"
+                    Point3="-150,43" />
                   <mssgle:LineSegment
-                    End="-145.666666666667,70.5" />
+                    End="-150,70.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-128.639720052083,36.8421955403088,111.6127734375,11.609375"
+              BoundingBox="-130.80638671875,44,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Products Seq Container\DF_Products\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Sequence Container\Products Seq Container\DF_Products\SRC_Products">
     <Properties>
@@ -7046,19 +6938,6 @@ WHERE `SupplierID`&gt;=0</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sequence Container\Products Seq Container\DF_Products\DST_Products">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -7174,7 +7053,9 @@ WHERE `SupplierID`&gt;=0</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
