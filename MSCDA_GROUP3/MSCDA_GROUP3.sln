@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "MSCDA_GROUP3", "MSCDA_GROUP3.dtproj", "{51BC847F-09A5-4A35-99B9-AC32744917EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51BC847F-09A5-4A35-99B9-AC32744917EB}.Development|Default.ActiveCfg = Development
+		{51BC847F-09A5-4A35-99B9-AC32744917EB}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A780C5E-52D0-4860-9239-BF7C7E4EE30A}
+	EndGlobalSection
+EndGlobal
